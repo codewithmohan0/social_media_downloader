@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Social Media Downloader</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+    <h2>Download Videos from YouTube, Instagram, Facebook, TikTok</h2>
+    <form method="post">
+        <input type="text" name="url" placeholder="Enter video URL..." required>
+        <button type="submit">Download</button>
+    </form>
+
+    {% if result %}
+        <p><strong>Title:</strong> {{ result.title }}</p>
+        <p><a href="{{ url_for('download_file', filename=result.filename) }}">Download File</a></p>
+    {% elif error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+
+    <p><a href="{{ url_for('history') }}">View Download History</a></p>
+</div>
+</body>
+</html>
